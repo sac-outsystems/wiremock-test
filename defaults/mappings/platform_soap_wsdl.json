@@ -1,0 +1,36 @@
+{
+  "mappings": [
+    {
+      "name": "ServiceCenter_Solutions",
+      "request": {
+        "url": "/ServiceCenter/Solutions.asmx?wsdl",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "service_center_solutions.xml"
+      },
+      "persistent": true,
+      "priority": 500,
+      "metadata": {
+        "default": "true"
+      }
+    },
+    {
+      "name": "ServiceCenter_OutSystemsPlatform",
+      "request": {
+        "url": "/ServiceCenter/OutSystemsPlatform.asmx?wsdl",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "service_center_outsystems_platform.xml"
+      },
+      "persistent": true,
+      "priority": 500,
+      "metadata": {
+        "default": "true"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <User_SetInactiveResponse xmlns="http://www.outsystems.com">
+            <Success>true</Success>
+            <Status>
+                <Id>0</Id>
+                <ResponseId>1</ResponseId>
+                <ResponseMessage>OK</ResponseMessage>
+                <ResponseAdditionalInfo/>
+            </Status>
+        </User_SetInactiveResponse>
+    </soap:Body>
+</soap:Envelope>

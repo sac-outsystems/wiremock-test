@@ -1,0 +1,39 @@
+{
+  "mappings": [
+    {
+      "name": "ServiceCenter_Solution_Download",
+      "request": {
+        "url": "/ServiceCenter/Solutions.asmx",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "equalToXml": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:out=\"http://www.outsystems.com\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <out:Download>\n         <!--Optional:-->\n         <out:SolutionName>my_solution</out:SolutionName>\n         <out:SolutionVersionId>1</out:SolutionVersionId>\n         <!--Optional:-->\n         <out:username>user1</out:username>\n         <!--Optional:-->\n         <out:password>wiremock_pwd</out:password>\n      </out:Download>\n   </soapenv:Body>\n</soapenv:Envelope>"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><DownloadResponse xmlns=\"http://www.outsystems.com\"><SolutionDownloadOpId>1</SolutionDownloadOpId><file>000</file></DownloadResponse></soap:Body></soap:Envelope>"
+      },
+      "persistent": true
+    },
+    {
+      "id": "e212c93c-64d6-48a8-9c43-168e063568e9",
+      "name": "ServiceCenter_CreateAllContentSolution",
+      "request": {
+        "url": "/ServiceCenter/Solutions.asmx",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "equalToXml": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:out=\"http://www.outsystems.com\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <out:CreateAllSolution>\n         <!--Optional:-->\n         <out:AllSolutionName>my_solution</out:AllSolutionName>\n         <!--Optional:-->\n         <out:username>user1</out:username>\n         <!--Optional:-->\n         <out:password>wiremock_pwd</out:password>\n      </out:CreateAllSolution>\n   </soapenv:Body>\n</soapenv:Envelope>"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><CreateAllSolutionResponse xmlns=\"http://www.outsystems.com\"><SolutionId>1</SolutionId></CreateAllSolutionResponse></soap:Body></soap:Envelope>"
+      },
+      "persistent": true
+    }
+  ]
+}

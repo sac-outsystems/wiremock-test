@@ -1,0 +1,20 @@
+{
+  "mappings": [
+    {
+      "name": "lifetime_services_wsdl",
+      "request": {
+        "url": "/LifeTimeServices/UserManagementService.asmx?wsdl",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "lifetime_service_usermanagement.xml"
+      },
+      "persistent": true,
+      "priority": 500,
+      "metadata": {
+        "default": "true"
+      }
+    }
+  ]
+}

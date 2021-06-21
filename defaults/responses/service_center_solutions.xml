@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions
+    xmlns:s="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:tns="http://ServiceCenter/Solutions/"
+    xmlns:s0="http://www.outsystems.com"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://ServiceCenter/Solutions/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://www.outsystems.com">
+            <s:element name="Publish">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="File" type="s:base64Binary" />
+                        <s:element minOccurs="0" maxOccurs="1" name="Filename" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="JustUpload" type="s:boolean" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CleanPublish" type="s:boolean" />
+                        <s:element minOccurs="1" maxOccurs="1" name="FromOSPTool" type="s:boolean" />
+                        <s:element minOccurs="0" maxOccurs="1" name="CatalogMappings" type="s0:ArrayOfDBCatalogMapping" />
+                        <s:element minOccurs="0" maxOccurs="1" name="ReuseTablesOnMove" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfDBCatalogMapping">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="DBCatalogMapping" nillable="true" type="s0:DBCatalogMapping" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="DBCatalogMapping">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="EspaceName" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="CatalogName" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="PublishResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="Messages" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="SolutionPubId" type="s:int" />
+                        <s:element minOccurs="0" maxOccurs="1" name="PackUID" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="PackSchemaVersion" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="NeedsConfiguration" type="s:boolean" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="Download">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="SolutionName" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="SolutionVersionId" type="s:int" />
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="DownloadResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="SolutionDownloadOpId" type="s:int" />
+                        <s:element minOccurs="0" maxOccurs="1" name="file" type="s:base64Binary" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="Pack">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ComponentList" type="s0:ArrayOfSolutionPack_File" />
+                        <s:element minOccurs="0" maxOccurs="1" name="SolutionName" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="SolutionDescription" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfSolutionPack_File">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="SolutionPack_File" nillable="true" type="s0:SolutionPack_File" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="SolutionPack_File">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Filename" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="Directory" type="s:boolean" />
+                    <s:element minOccurs="1" maxOccurs="1" name="DateTime" type="s:dateTime" />
+                    <s:element minOccurs="1" maxOccurs="1" name="Size" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="CompressedSize" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:base64Binary" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="PackResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="file" type="s:base64Binary" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetMessages">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="SolutionPubId" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="LastSeenId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetMessagesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="Messages" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="Delete">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="SolutionID" type="s:int" />
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="DeleteResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="Messages" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="Handshake">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="version" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="lastUpgradeVersion" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="HandshakeResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="ok" type="s:boolean" />
+                        <s:element minOccurs="0" maxOccurs="1" name="error" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="Pack2">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ComponentList" type="s0:ArrayOfSolutionPack_File" />
+                        <s:element minOccurs="0" maxOccurs="1" name="SolutionName" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="SolutionKey" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="SolutionDescription" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="Pack2Response">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="file" type="s:base64Binary" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="PublishRunningVersion">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="SolutionName" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="PublishRunningVersionResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="SolutionPubId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPropertiesForHandshake">
+                <s:complexType />
+            </s:element>
+            <s:element name="GetPropertiesForHandshakeResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="properties" type="s0:ArrayOfProperties" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfProperties">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="Properties" nillable="true" type="s0:Properties" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="Properties">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="PublishWithoutConfiguration">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="JustUpload" type="s:boolean" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CleanPublish" type="s:boolean" />
+                        <s:element minOccurs="1" maxOccurs="1" name="SolutionPubId" type="s:int" />
+                        <s:element minOccurs="0" maxOccurs="1" name="PackUID" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="PackSchemaVersion" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="FromOSPTool" type="s:boolean" />
+                        <s:element minOccurs="0" maxOccurs="1" name="ReuseTablesOnMove" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="PublishWithoutConfigurationResponse">
+                <s:complexType />
+            </s:element>
+            <s:element name="CreateAllSolution">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="AllSolutionName" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="CreateAllSolutionResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="SolutionId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="TestLogin">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="TestLoginResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetProperties">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPropertiesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="properties" type="s0:ArrayOfProperties" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetSolutionIdByName">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="solutionName" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetSolutionIdByNameResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="SolutionId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="PublishRunning">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="SolutionName" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="PublishSystemApplications" type="s:boolean" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CleanPublish" type="s:boolean" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="PublishRunningResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="SolutionId" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="SolutionPubId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:message name="PublishSoapIn">
+        <wsdl:part name="parameters" element="s0:Publish" />
+    </wsdl:message>
+    <wsdl:message name="PublishSoapOut">
+        <wsdl:part name="parameters" element="s0:PublishResponse" />
+    </wsdl:message>
+    <wsdl:message name="DownloadSoapIn">
+        <wsdl:part name="parameters" element="s0:Download" />
+    </wsdl:message>
+    <wsdl:message name="DownloadSoapOut">
+        <wsdl:part name="parameters" element="s0:DownloadResponse" />
+    </wsdl:message>
+    <wsdl:message name="PackSoapIn">
+        <wsdl:part name="parameters" element="s0:Pack" />
+    </wsdl:message>
+    <wsdl:message name="PackSoapOut">
+        <wsdl:part name="parameters" element="s0:PackResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetMessagesSoapIn">
+        <wsdl:part name="parameters" element="s0:GetMessages" />
+    </wsdl:message>
+    <wsdl:message name="GetMessagesSoapOut">
+        <wsdl:part name="parameters" element="s0:GetMessagesResponse" />
+    </wsdl:message>
+    <wsdl:message name="DeleteSoapIn">
+        <wsdl:part name="parameters" element="s0:Delete" />
+    </wsdl:message>
+    <wsdl:message name="DeleteSoapOut">
+        <wsdl:part name="parameters" element="s0:DeleteResponse" />
+    </wsdl:message>
+    <wsdl:message name="HandshakeSoapIn">
+        <wsdl:part name="parameters" element="s0:Handshake" />
+    </wsdl:message>
+    <wsdl:message name="HandshakeSoapOut">
+        <wsdl:part name="parameters" element="s0:HandshakeResponse" />
+    </wsdl:message>
+    <wsdl:message name="Pack2SoapIn">
+        <wsdl:part name="parameters" element="s0:Pack2" />
+    </wsdl:message>
+    <wsdl:message name="Pack2SoapOut">
+        <wsdl:part name="parameters" element="s0:Pack2Response" />
+    </wsdl:message>
+    <wsdl:message name="PublishRunningVersionSoapIn">
+        <wsdl:part name="parameters" element="s0:PublishRunningVersion" />
+    </wsdl:message>
+    <wsdl:message name="PublishRunningVersionSoapOut">
+        <wsdl:part name="parameters" element="s0:PublishRunningVersionResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetPropertiesForHandshakeSoapIn">
+        <wsdl:part name="parameters" element="s0:GetPropertiesForHandshake" />
+    </wsdl:message>
+    <wsdl:message name="GetPropertiesForHandshakeSoapOut">
+        <wsdl:part name="parameters" element="s0:GetPropertiesForHandshakeResponse" />
+    </wsdl:message>
+    <wsdl:message name="PublishWithoutConfigurationSoapIn">
+        <wsdl:part name="parameters" element="s0:PublishWithoutConfiguration" />
+    </wsdl:message>
+    <wsdl:message name="PublishWithoutConfigurationSoapOut">
+        <wsdl:part name="parameters" element="s0:PublishWithoutConfigurationResponse" />
+    </wsdl:message>
+    <wsdl:message name="CreateAllSolutionSoapIn">
+        <wsdl:part name="parameters" element="s0:CreateAllSolution" />
+    </wsdl:message>
+    <wsdl:message name="CreateAllSolutionSoapOut">
+        <wsdl:part name="parameters" element="s0:CreateAllSolutionResponse" />
+    </wsdl:message>
+    <wsdl:message name="TestLoginSoapIn">
+        <wsdl:part name="parameters" element="s0:TestLogin" />
+    </wsdl:message>
+    <wsdl:message name="TestLoginSoapOut">
+        <wsdl:part name="parameters" element="s0:TestLoginResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetPropertiesSoapIn">
+        <wsdl:part name="parameters" element="s0:GetProperties" />
+    </wsdl:message>
+    <wsdl:message name="GetPropertiesSoapOut">
+        <wsdl:part name="parameters" element="s0:GetPropertiesResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetSolutionIdByNameSoapIn">
+        <wsdl:part name="parameters" element="s0:GetSolutionIdByName" />
+    </wsdl:message>
+    <wsdl:message name="GetSolutionIdByNameSoapOut">
+        <wsdl:part name="parameters" element="s0:GetSolutionIdByNameResponse" />
+    </wsdl:message>
+    <wsdl:message name="PublishRunningSoapIn">
+        <wsdl:part name="parameters" element="s0:PublishRunning" />
+    </wsdl:message>
+    <wsdl:message name="PublishRunningSoapOut">
+        <wsdl:part name="parameters" element="s0:PublishRunningResponse" />
+    </wsdl:message>
+    <wsdl:portType name="SolutionsSoap">
+        <wsdl:operation name="Publish">
+            <wsdl:input message="tns:PublishSoapIn" />
+            <wsdl:output message="tns:PublishSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="Download">
+            <wsdl:input message="tns:DownloadSoapIn" />
+            <wsdl:output message="tns:DownloadSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="Pack">
+            <wsdl:input message="tns:PackSoapIn" />
+            <wsdl:output message="tns:PackSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetMessages">
+            <wsdl:input message="tns:GetMessagesSoapIn" />
+            <wsdl:output message="tns:GetMessagesSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="Delete">
+            <wsdl:input message="tns:DeleteSoapIn" />
+            <wsdl:output message="tns:DeleteSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="Handshake">
+            <wsdl:input message="tns:HandshakeSoapIn" />
+            <wsdl:output message="tns:HandshakeSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="Pack2">
+            <wsdl:input message="tns:Pack2SoapIn" />
+            <wsdl:output message="tns:Pack2SoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="PublishRunningVersion">
+            <wsdl:input message="tns:PublishRunningVersionSoapIn" />
+            <wsdl:output message="tns:PublishRunningVersionSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetPropertiesForHandshake">
+            <wsdl:input message="tns:GetPropertiesForHandshakeSoapIn" />
+            <wsdl:output message="tns:GetPropertiesForHandshakeSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="PublishWithoutConfiguration">
+            <wsdl:input message="tns:PublishWithoutConfigurationSoapIn" />
+            <wsdl:output message="tns:PublishWithoutConfigurationSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="CreateAllSolution">
+            <wsdl:input message="tns:CreateAllSolutionSoapIn" />
+            <wsdl:output message="tns:CreateAllSolutionSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="TestLogin">
+            <wsdl:input message="tns:TestLoginSoapIn" />
+            <wsdl:output message="tns:TestLoginSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetProperties">
+            <wsdl:input message="tns:GetPropertiesSoapIn" />
+            <wsdl:output message="tns:GetPropertiesSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetSolutionIdByName">
+            <wsdl:input message="tns:GetSolutionIdByNameSoapIn" />
+            <wsdl:output message="tns:GetSolutionIdByNameSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="PublishRunning">
+            <wsdl:input message="tns:PublishRunningSoapIn" />
+            <wsdl:output message="tns:PublishRunningSoapOut" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SolutionsSoap" type="tns:SolutionsSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="Publish">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/Publish" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Download">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/Download" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Pack">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/Pack" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetMessages">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/GetMessages" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Delete">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/Delete" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Handshake">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/Handshake" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Pack2">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/Pack2" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PublishRunningVersion">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/PublishRunningVersion" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPropertiesForHandshake">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/GetPropertiesForHandshake" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PublishWithoutConfiguration">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/PublishWithoutConfiguration" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateAllSolution">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/CreateAllSolution" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="TestLogin">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/TestLogin" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetProperties">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/GetProperties" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSolutionIdByName">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/GetSolutionIdByName" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PublishRunning">
+            <soap:operation soapAction="http://ServiceCenter/Solutions/PublishRunning" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="SolutionsSoap12" type="tns:SolutionsSoap">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="Publish">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/Publish" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Download">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/Download" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Pack">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/Pack" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetMessages">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/GetMessages" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Delete">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/Delete" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Handshake">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/Handshake" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Pack2">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/Pack2" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PublishRunningVersion">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/PublishRunningVersion" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPropertiesForHandshake">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/GetPropertiesForHandshake" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PublishWithoutConfiguration">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/PublishWithoutConfiguration" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateAllSolution">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/CreateAllSolution" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="TestLogin">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/TestLogin" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetProperties">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/GetProperties" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSolutionIdByName">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/GetSolutionIdByName" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PublishRunning">
+            <soap12:operation soapAction="http://ServiceCenter/Solutions/PublishRunning" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="Solutions">
+        <wsdl:port name="SolutionsSoap" binding="tns:SolutionsSoap">
+            <soap:address location="https://wiremock1-lt.jwvvzvyfxe.qa.outsystemsteams.com/ServiceCenter/Solutions.asmx" />
+        </wsdl:port>
+        <wsdl:port name="SolutionsSoap12" binding="tns:SolutionsSoap12">
+            <soap12:address location="https://wiremock1-lt.jwvvzvyfxe.qa.outsystemsteams.com/ServiceCenter/Solutions.asmx" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

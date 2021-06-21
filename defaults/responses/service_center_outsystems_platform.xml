@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+                  xmlns:tns="http://ServiceCenter/OutSystemsPlatform/"
+                  xmlns:s0="http://www.outsystems.com"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  targetNamespace="http://ServiceCenter/OutSystemsPlatform/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web Service destinated to give support to the
+        outsystems platform portal. (internal use only)
+    </wsdl:documentation>
+    <wsdl:types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://www.outsystems.com">
+            <s:element name="SetLicense">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="fileContent" type="s:base64Binary"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SetLicenseResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="success" type="s:boolean"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="errorText" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPlatformInfo">
+                <s:complexType/>
+            </s:element>
+            <s:element name="GetPlatformInfoResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="Serial" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:message name="SetLicenseSoapIn">
+        <wsdl:part name="parameters" element="s0:SetLicense"/>
+    </wsdl:message>
+    <wsdl:message name="SetLicenseSoapOut">
+        <wsdl:part name="parameters" element="s0:SetLicenseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPlatformInfoSoapIn">
+        <wsdl:part name="parameters" element="s0:GetPlatformInfo"/>
+    </wsdl:message>
+    <wsdl:message name="GetPlatformInfoSoapOut">
+        <wsdl:part name="parameters" element="s0:GetPlatformInfoResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="OutSystemsPlatformSoap">
+        <wsdl:operation name="SetLicense">
+            <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Allows a registred user to publish a
+                license. Returns error messages regarding user permissions and license state.
+            </wsdl:documentation>
+            <wsdl:input message="tns:SetLicenseSoapIn"/>
+            <wsdl:output message="tns:SetLicenseSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetPlatformInfo">
+            <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get basic information from servers.
+            </wsdl:documentation>
+            <wsdl:input message="tns:GetPlatformInfoSoapIn"/>
+            <wsdl:output message="tns:GetPlatformInfoSoapOut"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="OutSystemsPlatformSoap" type="tns:OutSystemsPlatformSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="SetLicense">
+            <soap:operation soapAction="http://ServiceCenter/OutSystemsPlatform/SetLicense" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPlatformInfo">
+            <soap:operation soapAction="http://ServiceCenter/OutSystemsPlatform/GetPlatformInfo" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="OutSystemsPlatformSoap12" type="tns:OutSystemsPlatformSoap">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="SetLicense">
+            <soap12:operation soapAction="http://ServiceCenter/OutSystemsPlatform/SetLicense" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPlatformInfo">
+            <soap12:operation soapAction="http://ServiceCenter/OutSystemsPlatform/GetPlatformInfo" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="OutSystemsPlatform">
+        <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web Service destinated to give support to the
+            outsystems platform portal. (internal use only)
+        </wsdl:documentation>
+        <wsdl:port name="OutSystemsPlatformSoap" binding="tns:OutSystemsPlatformSoap">
+            <soap:address
+                    location="https://wiremock1-lt.jwvvzvyfxe.qa.outsystemsteams.com/ServiceCenter/OutSystemsPlatform.asmx"/>
+        </wsdl:port>
+        <wsdl:port name="OutSystemsPlatformSoap12" binding="tns:OutSystemsPlatformSoap12">
+            <soap12:address
+                    location="https://wiremock1-lt.jwvvzvyfxe.qa.outsystemsteams.com/ServiceCenter/OutSystemsPlatform.asmx"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

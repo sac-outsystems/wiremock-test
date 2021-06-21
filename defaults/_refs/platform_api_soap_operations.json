@@ -1,0 +1,49 @@
+{
+  "mappings": [
+    {
+      "name": "ServiceCenter_GetPlatformInfo",
+      "request": {
+        "url": "/ServiceCenter/OutSystemsPlatform.asmx?wsdl",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "equalToXml": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:out=\"http://www.outsystems.com\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <out:GetPlatformInfo/>\n   </soapenv:Body>\n</soapenv:Envelope>"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><GetPlatformInfoResponse xmlns=\"http://www.outsystems.com\"><Version>11.10.2.25738</Version><Serial>MJB-OGK-XJQ-PUX-NNN-JES-BHP-GUT</Serial></GetPlatformInfoResponse></soap:Body></soap:Envelope>"
+      },
+      "persistent": true,
+      "priority": 500,
+      "metadata": {
+        "default": "true"
+      }
+    },
+    {
+      "name": "ServiceCenter_SetLicense",
+      "request": {
+        "url": "/ServiceCenter/OutSystemsPlatform.asmx?wsdl",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "enablePlaceholders": true,
+            "placeholderOpeningDelimiterRegex": "\\[\\[",
+            "placeholderClosingDelimiterRegex": "]]",
+            "equalToXml": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:out=\"http://www.outsystems.com\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <out:SetLicense>\n         <!--Optional:-->\n         <out:username>[[xmlunit.ignore]]</out:username>\n         <!--Optional:-->\n         <out:password>[[xmlunit.ignore]]</out:password>\n         <!--Optional:-->\n         <out:fileContent>[[xmlunit.ignore]]</out:fileContent>\n      </out:SetLicense>\n   </soapenv:Body>\n</soapenv:Envelope>"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><SetLicenseResponse xmlns=\"http://www.outsystems.com\"><success>true</success></SetLicenseResponse></soap:Body></soap:Envelope>"
+      },
+      "persistent": true,
+      "priority": 500,
+      "metadata": {
+        "default": "true"
+      }
+    }
+  ]
+}

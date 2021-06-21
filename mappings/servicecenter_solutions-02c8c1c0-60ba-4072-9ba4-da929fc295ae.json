@@ -1,0 +1,19 @@
+{
+  "id" : "02c8c1c0-60ba-4072-9ba4-da929fc295ae",
+  "name" : "ServiceCenter_Solutions",
+  "request" : {
+    "url" : "/ServiceCenter/Solutions.asmx?wsdl",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "service_center_solutions.xml"
+  },
+  "uuid" : "02c8c1c0-60ba-4072-9ba4-da929fc295ae",
+  "persistent" : true,
+  "priority" : 500,
+  "metadata" : {
+    "default" : "true"
+  },
+  "insertionIndex" : 1
+}

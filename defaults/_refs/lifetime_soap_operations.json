@@ -1,0 +1,67 @@
+{
+  "mappings": [
+    {
+      "name": "LifeTimeServices_User_SetInactive",
+      "request": {
+        "url": "/LifeTimeServices/UserManagementService.asmx",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "equalToXml": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:out=\"http://www.outsystems.com\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <out:User_SetInactive>\n         <!--Optional:-->\n         <out:Authentication>\n            <!--Optional:-->\n            <out:Username>user1</out:Username>\n            <!--Optional:-->\n            <out:Password>pwd1</out:Password>\n            <!--Optional:-->\n            <out:Token></out:Token>\n         </out:Authentication>\n         <!--Optional:-->\n         <out:Username>utilizador1</out:Username>\n      </out:User_SetInactive>\n   </soapenv:Body>\n</soapenv:Envelope>"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><User_SetInactiveResponse xmlns=\"http://www.outsystems.com\"><Success>true</Success><Status><Id>0</Id><ResponseId>1</ResponseId><ResponseMessage>OK</ResponseMessage><ResponseAdditionalInfo /></Status></User_SetInactiveResponse></soap:Body></soap:Envelope>"
+      },
+      "persistent": true,
+      "priority": 500,
+      "metadata": {
+        "default": "true"
+      }
+    },
+    {
+      "name": "LifeTimeServices_User_ChangePassword",
+      "request": {
+        "url": "/LifeTimeServices/UserManagementService.asmx",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "equalToXml": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:out=\"http://www.outsystems.com\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <out:User_ChangePassword>\n         <!--Optional:-->\n         <out:Authentication>\n            <!--Optional:-->\n            <out:Username>user1</out:Username>\n            <!--Optional:-->\n            <out:Password>pwd1</out:Password>\n            <!--Optional:-->\n            <out:Token></out:Token>\n         </out:Authentication>\n         <!--Optional:-->\n         <out:Username>user1</out:Username>\n         <!--Optional:-->\n         <out:NewPassword>pwd1</out:NewPassword>\n         <out:EncryptPassword>true</out:EncryptPassword>\n      </out:User_ChangePassword>\n   </soapenv:Body>\n</soapenv:Envelope>"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><User_ChangePasswordResponse xmlns=\"http://www.outsystems.com\"><Success>true</Success><Status><Id>0</Id><ResponseId>1</ResponseId><ResponseMessage>OK</ResponseMessage><ResponseAdditionalInfo /></Status></User_ChangePasswordResponse></soap:Body></soap:Envelope>"
+      },
+      "persistent": true,
+      "priority": 500,
+      "metadata": {
+        "default": "true"
+      }
+    },
+    {
+      "name": "LifeTimeServices_User_CreateOrUpdate",
+      "request": {
+        "url": "/LifeTimeServices/UserManagementService.asmx",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "equalToXml": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:out=\"http://www.outsystems.com\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <out:User_CreateOrUpdate>\n         <!--Optional:-->\n         <out:Authentication>\n            <!--Optional:-->\n            <out:Username>user2</out:Username>\n            <!--Optional:-->\n            <out:Password>pwd2</out:Password>\n            <!--Optional:-->\n            <out:Token></out:Token>\n         </out:Authentication>\n         <!--Optional:-->\n         <out:Username>user2</out:Username>\n         <!--Optional:-->\n         <out:Password>pwd2</out:Password>\n         <out:EncryptPassword>true</out:EncryptPassword>\n         <!--Optional:-->\n         <out:Name>user2</out:Name>\n         <!--Optional:-->\n         <out:Email>user2mail</out:Email>\n         <!--Optional:-->\n         <out:RoleName>Administrator</out:RoleName>\n      </out:User_CreateOrUpdate>\n   </soapenv:Body>\n</soapenv:Envelope>"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><User_CreateOrUpdateResponse xmlns=\"http://www.outsystems.com\"><Success>true</Success><Status><Id>{{randomValue length=3 type='NUMERIC'}}</Id><ResponseId>{{randomValue length=3 type='NUMERIC'}}</ResponseId><ResponseMessage>OK</ResponseMessage><ResponseAdditionalInfo /></Status><PlatformUser><Id>{{randomValue length=2 type='NUMERIC'}}</Id><Username>user{{randomValue length=4 type='ALPHANUMERIC' uppercase=true}}</Username><Name>name{{randomValue length=4 type='ALPHANUMERIC' uppercase=true}}</Name><Email>email{{randomValue length=4 type='ALPHANUMERIC' uppercase=true}}/Email><RoleName>Administrator</RoleName></PlatformUser></User_CreateOrUpdateResponse></soap:Body></soap:Envelope>"
+      },
+      "persistent": true,
+      "priority": 500,
+      "metadata": {
+        "default": "true"
+      }
+    }
+  ]
+}
