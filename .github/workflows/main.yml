@@ -14,11 +14,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Run a one-line script
         run: |
+          git switch qa
           n_commits_behind=$(git diff --stat 'qa@{now}..main@{1 day ago}' 2>/dev/null | wc -l)
           if [ $n_commits_behind -gt 0 ]
           then
