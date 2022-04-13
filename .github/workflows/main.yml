@@ -15,9 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run a one-line script
+      - name: Check the history
         run: |
-          git switch qa
           n_commits_behind=$(git diff --stat 'qa@{now}..main@{1 day ago}' 2>/dev/null | wc -l)
           if [ $n_commits_behind -gt 0 ]
           then
