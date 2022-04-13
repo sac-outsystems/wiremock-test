@@ -15,5 +15,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run a one-line script
-        run: git diff --stat 'qa@{now}..main@{1 day ago}' 2>/dev/null | wc -l
+      - name: Check the history
+        run: |
+          n_commits_behind=$(git diff --stat 'qa@{now}..main@{1 day ago}' 2>/dev/null | wc -l)
+          if [ $n_commits_behind -gt 0 ]
+          then
+            echo "You need to move code to production"
+          else
+            echo "Everything is OK"
+          fi        
