@@ -147,3 +147,4 @@ cdk.context.json
 
 # pact
 pact-mock-service.log
+/mappings/
