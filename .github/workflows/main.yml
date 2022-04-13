@@ -22,5 +22,5 @@ jobs:
           then
             echo "You need to move code to production"
           else
-            echo "Everithing is OK"
+            echo "Everything is OK"
           fi        
