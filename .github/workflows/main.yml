@@ -18,6 +18,7 @@ jobs:
       - name: Check the history
         run: |
           n_commits_behind=$(git diff --stat 'qa@{now}..main@{1 day ago}' 2>/dev/null | wc -l)
+          echo $n_commits_behind
           if [ $n_commits_behind -gt 0 ]
           then
             echo "You need to move code to production"
